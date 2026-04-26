@@ -1,0 +1,432 @@
+@font-face {
+  font-family: Arsenal;
+  src: url(Arsenal/Arsenal-Regular.ttf);
+}
+@font-face {
+  font-family: ArsenalBold;
+  src: url(Arsenal/Arsenal-Bold.ttf);
+  font-weight: bold;
+}
+
+p, h3{font-size: 16px;} 
+main {width: 100%;;}
+
+h2{
+  font-style: normal;
+  padding: 10px;
+  margin: 0px;
+}
+
+header {padding: 15px;}
+div {padding: 0px;}
+
+article {
+  background-color: #ffeef9;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 25px;
+}
+
+#indexBox{
+  background-image: url(images/tea.png);
+  background-position: top;
+  background-size: cover;
+  width: 25%;
+  height: 100%;
+  margin-top: 0px;
+}
+
+body { /*DEFAULT - Mobile*/
+  background-image: url("https://i.imgur.com/OgBnLvC.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  height: 100%;
+  font-family: Arsenal;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+  margin: 0px;
+}
+
+@media (min-width:540px){ /*Tablet*/
+}
+@media (min-width:800px){ /*Desktop*/
+  
+}
+
+.navbar {
+  display: grid;
+  height: 100%;
+  z-index: 1000;
+}
+
+.link-wrapper {
+  position: relative;
+  display: inline-block;
+  align-self: center;
+
+  .fallback {
+    font-size: 2.25em;
+    letter-spacing: 4px;
+    line-height: 0;
+    opacity: 0;
+    position: relative;
+    top: 15px;
+    left: 0;
+  }
+  .shape-wrapper { 
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  &:hover {
+    z-index: 9999;
+    .shape-wrapper { 
+      transform: rotate(-6deg);
+      display: block; 
+      .shape.cyan-fill {
+        transform: scale(3,.1);
+      }
+    }
+    .img-wrapper {
+      img {
+       animation: tiltBounce .15s ease;
+       animation-fill-mode: forwards;
+       display: block;
+        &.normal {
+           mix-blend-mode: darken;
+        }
+      }
+    }
+  }
+  &:nth-child(even) {
+    &:hover {
+      .shape-wrapper { transform: rotate(11deg) }
+      .img-wrapper img {
+         animation: tiltBounceAlt .15s ease;
+         animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+.img-wrapper {
+  img {
+    width: auto;
+    height: 40px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: -5px;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 999;
+    &.normal {
+      display: block;
+    }
+    &.active {
+      display: none;
+      z-index: -1;
+    }
+  }
+}
+.shape-wrapper {
+  filter: sepia(50%) saturate(3);
+  .shape {
+    transition: all .1s linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    overflow: hidden;
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &.cyan-fill {
+      mix-blend-mode: screen;
+      animation-delay: 0.05s;
+      animation-duration: .4s;
+    }
+    &.red-fill {
+      animation-duration: .45s;
+      animation-delay: 0.08s;
+      opacity: .8;
+    }
+  }
+}
+
+.jelly {
+  -webkit-animation-name: jelly;
+          animation-name: jelly;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@keyframes tiltBounce {
+  0% {
+    transform: scale(1) rotate(-7deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(-7deg);
+  }
+  100% {
+    transform: scale(1.15) rotate(-7deg);
+  }
+}
+@keyframes tiltBounceAlt {
+  0% {
+    transform: scale(1) rotate(7deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(7deg);
+  }
+  100% {
+    transform: scale(1.15) rotate(7deg);
+  }
+}
+@keyframes jelly {
+  0% {
+    width: 100%; transform: scale(1.25,1) skewX(20deg) translateY(3px) rotateX(40deg) rotateY(10deg) rotateZ(-10deg);
+  }
+  50% { width: 100%; transform: scale(1.25,1.1) skewX(-15deg) translateY(-2px) translateZ(-30px); }
+  100% { width: 100%; transform: scale(1.25,1) skewX(20deg) translateY(3px) rotateX(-40deg) rotateY(-10deg) rotateZ(-15deg); }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0%;
+    transform: translateY(50%);
+  }
+}
+
+.rightArrow {
+  float: right;
+}
+
+.panel {
+  z-index: 10;
+  width: 0px;
+  height: 85%;
+  position: fixed;
+  top: 8%;
+  left: 25%;
+  background-color: #cd2222;
+  overflow-x: hidden;
+  transition: 0.5s; 
+  align-items: center;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+}
+.panel2 {
+  z-index: 0;
+  width: 0px;
+  height: 85%;
+  position: fixed;
+  top: 12%;
+  left: 25%;
+  background-color: #000000;
+  overflow-x: hidden;
+  transition: 0.5s; 
+  align-items: center;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+}
+.panel.open {
+  width: 70%;
+}
+.panel2.open {
+  width: 72%;
+}
+.panel img {
+  width: 35vh;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.grid1x2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 2%;
+  place-items: center;
+  padding-right: 4%;
+  padding-left: 4%;
+}
+.grid1x2_even {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 2%;
+  place-items: center;
+  padding-right: 12%;
+  padding-left: 12%;
+}
+.grid2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+  padding-right: 12%;
+  padding-left: 12%;
+  gap: 10px;
+}
+.grid1x1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  margin: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.grid2x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+}
+
+.content-page { display: none;}
+.content-page.active { display: block;}
+
+.nextBtn {
+  float: right;
+  position: absolute;
+  bottom: 100px;
+  right: 200px;
+  display: none;
+}
+.nextBtn.active {
+  display: inherit;
+}
+
+.backBtn {
+  float: left;
+  position: absolute;
+  bottom: 100px;
+  display: none;
+  left: 400px;
+}
+.backBtn.active {
+  display: inherit;
+}
+
+.content {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 2%;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  width: 100%;
+  height: 500px;
+}
+
+.content::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+  background-color: #000000;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  z-index: -1;
+}
+
+/*lightbox: this is to open up a picture :)*/
+.lightbox {
+  background: #000000;
+  border: 10px double white;
+  border-radius: 15px;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 10%; 
+  top: 5%;
+  width: 80%;
+  height: 90%;
+  justify-content: center;
+}
+.lightbox.active {
+  display:flex;
+  animation: fadeIn 0.4s ease;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  padding: auto;
+  margin: auto;
+}
+
+.lightboxCloseBtn {
+  position: absolute;
+  top: 20px; right: 40px;
+  color: #ffffff;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.closeAnim {
+  display:flex;
+  animation: fadeOut 0.4s ease;
+}
+
+.openGallery {
+  background-color: #cd2222;
+  width: 20%; height: 40px;
+}
+
+.scrollableView {
+  border: dotted 2px rgb(64, 64, 64);
+  max-height: 380px;
+  height: 380px;
+  max-width: 84%;
+  overflow: scroll;
+  transform: translateX(9%);
+  padding-bottom: 2%;
+}
+.scrollableView img {
+  width: 100%;
+  height: 200px; 
+  object-fit:contain;
+}
+
+.btnDocs {
+  display: inline-block;
+  background-color: #d32f2f;
+  color: white;
+  padding: 10px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace; 
+  
+  border: 3px solid black;
+  transform: skewX(-10deg) rotate(-1deg);
+  
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btnDocs:hover {
+  background-color: white;
+  color: black;
+  transform: skewX(0deg) rotate(0deg) scale(1.1); 
+  box-shadow: 5px 5px 0px #000; 
+}
