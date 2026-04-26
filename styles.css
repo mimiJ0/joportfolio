@@ -7,19 +7,20 @@
   src: url(Arsenal/Arsenal-Bold.ttf);
   font-weight: bold;
 }
-
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
 p, h3{font-size: 16px;} 
 main {width: 100%;;}
-
 h2{
   font-style: normal;
   padding: 10px;
   margin: 0px;
 }
-
 header {padding: 15px;}
 div {padding: 0px;}
-
 article {
   background-color: #ffeef9;
   padding: 20px;
@@ -370,7 +371,6 @@ body { /*DEFAULT - Mobile*/
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  padding: auto;
   margin: auto;
 }
 
