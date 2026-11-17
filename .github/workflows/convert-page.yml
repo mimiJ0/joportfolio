@@ -1,23 +1,20 @@
-name: Convert Webpage to PDF
+name: HTML to PDF Converter
 
 on:
   workflow_dispatch:
-    inputs:
-      url:
-        description: 'The webpage URL to convert'
-        required: true
-        default: 'https://example.com'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Convert Webpage to PDF with Chrome
-        run: |
-          google-chrome --headless --disable-gpu --no-sandbox --print-to-pdf=output.pdf "${{ github.event.inputs.url }}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Upload PDF Artifact
-        uses: actions/upload-artifact@v4
+      - name: html to pdf
+        uses: misaelnieto/web_to_pdf_action@master
         with:
-          name: generated-pdf
-          path: output.pdf
+          webPageURL: https://www.noenieto.com/resume/
+          outputFile: ./output/resume.pdf
+          usePuppeteer: true
+          useScreen: true
+          pdfOptions: '{"format": "Letter", "margin": {"top": "10mm", "left": "10mm", "right": "10mm", "bottom": "10mm"}}'
