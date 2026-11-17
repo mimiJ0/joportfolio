@@ -430,3 +430,26 @@ body { /*DEFAULT - Mobile*/
   transform: skewX(0deg) rotate(0deg) scale(1.1); 
   box-shadow: 5px 5px 0px #000; 
 }
+
+@media print {
+  /* Reset page layout for printing */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Force scrollable containers and boxes to expand fully */
+  div, section, main, article {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  /* Hide navigation controls, pagination buttons, and arrows during print */
+  nav, button, .back-button, .next-button, .pagination-controls {
+    display: none !important;
+  }
+}
