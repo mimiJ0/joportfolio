@@ -1,0 +1,28 @@
+name: Convert Webpage to PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'The webpage URL to convert'
+        required: true
+        default: 'https://example.com'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Convert Webpage to PDF
+        uses: fifsky/webpage-to-pdf@master
+        with:
+          url: ${{ github.event.inputs.url }}
+          output: './output.pdf'
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-pdf
+          path: output.pdf
